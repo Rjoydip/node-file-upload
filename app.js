@@ -60,7 +60,7 @@ app.get('/', function (req, res) {
   res.sendFile("index.html");
 });
 
-app.post('/formidable_file_upload', function (req, res) {
+app.post('/multiparty_file_upload', function (req, res) {
   var form = new multiparty.Form();
   form.uploadDir = DIR;
   form.multiples = true;
@@ -86,13 +86,12 @@ app.post('/formidable_file_upload', function (req, res) {
     res.write(JSON.stringify({
       files: RENAMED_FILE
     }));
-    res.end();
   });
 
   form.on('error', function (err) {
     res.status(422).send({
       err
-    })
+    });
   });
 
 });
